@@ -1,0 +1,4 @@
+customtkinter==6.0.0
+xlwings==0.36.10
+pandas==3.0.5
+matplotlib==3.11.1

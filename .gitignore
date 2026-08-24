@@ -1,0 +1,20 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+
+# Excel temporary files (очень важно для xlwings!)
+~$*.xlsx
+~$*.xls
+~$*.xlsm
+
+# IDE settings
+.idea/
+.vscode/
+
+# OS temporary files
+.DS_Store
+Thumbs.db
