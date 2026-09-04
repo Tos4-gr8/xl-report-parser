@@ -4,6 +4,7 @@ import pandas as pd
 import threading
 import matplotlib.pyplot as plt
 import os
+import sys
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 
@@ -16,9 +17,15 @@ app = ctk.CTk()
 app.geometry("510x430")
 app.title("Excel calc v1.0")
 
+def get_resource_path(relative_path):
+    """Return the absolute path to a resource, supporting PyInstaller bundles."""
+    if hasattr(sys, "_MEIPASS"):
+        return os.path.join(sys._MEIPASS, relative_path)
+    return os.path.join(os.path.abspath("."), relative_path)
+
 # Icon
 current_dir = os.path.dirname(os.path.abspath(__file__))
-icon_path = os.path.join(current_dir, "icon.ico")
+icon_path = get_resource_path("icon.ico")
 app.iconbitmap(icon_path)
 
 
@@ -252,6 +259,10 @@ def button_start_click(event=None):
     thread = threading.Thread(target=run_calculations, daemon=True)
     thread.start()
 
+# Forcefully terminate the current process and all its threads
+def on_closing():    
+    os._exit(0)
+
 # Bind Enter key to trigger calculation
 app.bind("<Return>", button_start_click)
 
@@ -327,5 +338,8 @@ label_instructions.pack(pady=15)
 # ==============================================================================
 # Application Main Loop
 # ==============================================================================
+
+# Перехватываем закрытие окна (нажатие на крестик)
+app.protocol("WM_DELETE_WINDOW", on_closing)
 
 app.mainloop()
