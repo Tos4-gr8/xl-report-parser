@@ -1,19 +1,33 @@
-# Python cache
+# Python cache & modules
 __pycache__/
+**/__pycache__/
 *.py[cod]
 *$py.class
+
+# Environments (Виртуальные окружения)
 .venv/
 env/
 venv/
+ENV/
 
-# Excel temporary files (очень важно для xlwings!)
+# PyInstaller / Сборка проекта в .exe (Добавлено)
+dist/
+build/
+*.spec
+
+# Excel temporary files (Временные файлы открытых отчетов)
 ~$*.xlsx
 ~$*.xls
 ~$*.xlsm
 
-# IDE settings
+# IDE & Editors settings (Настройки VS Code / PyCharm)
 .idea/
 .vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
 
 # OS temporary files
 .DS_Store
